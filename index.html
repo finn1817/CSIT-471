@@ -118,6 +118,29 @@
             display: inline-block;
         }
         
+        .chapter-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .chapter-link {
+            background: #5a67d8;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .chapter-link:hover {
+            background: #4c51bf;
+            color: white;
+        }
+        
         .footer {
             text-align: center;
             margin-top: 50px;
@@ -137,6 +160,10 @@
             
             .assignment-card {
                 padding: 20px;
+            }
+            
+            .chapter-links {
+                justify-content: center;
             }
         }
     </style>
@@ -174,17 +201,21 @@
                 </div>
             </a>
             
-            <a href="exercise-7-10/" class="assignment-card">
+            <div class="assignment-card">
                 <h3>
                     <span class="icon">📱</span>
-                    Exercise 7.10 - Wireless Carrier Research
+                    Chapter 7 - Technology Research Projects
                 </h3>
-                <p>Analysis of wireless carriers in St. Louis, Missouri, comparing Verizon, T-Mobile, and AT&T across multiple search engines and pricing structures.</p>
+                <p>Comprehensive technology analysis projects including wireless carrier research, search engine comparison, and business cost calculations for technology decisions.</p>
+                <div class="chapter-links">
+                    <a href="exercise-7-10/" class="chapter-link">📊 Exercise 7.10 - Wireless Carriers</a>
+                    <a href="exercise-7-11/" class="chapter-link">🔍 Exercise 7.11 - Search Analysis</a>
+                </div>
                 <div class="assignment-meta">
-                    <span>MIS Project 7.10</span>
+                    <span>MIS Chapter 7 Projects</span>
                     <span class="status completed">Completed</span>
                 </div>
-            </a>
+            </div>
             
             <a href="#" class="assignment-card" style="pointer-events: none; opacity: 0.7;">
                 <h3>

@@ -182,6 +182,76 @@
             margin-bottom: 8px;
         }
 
+        .business-calc-section {
+            margin-top: 40px;
+            padding: 25px;
+            background: #e8f4fd;
+            border-radius: 8px;
+            border-left: 5px solid #007bff;
+        }
+
+        .business-calc-section h2 {
+            color: #004085;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .business-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .business-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #5a67d8;
+        }
+
+        .business-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .business-table .feature-col {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .business-table .number-col {
+            text-align: right;
+            font-family: 'Courier New', monospace;
+            font-weight: 500;
+        }
+
+        .business-table .total-row {
+            background-color: #fff3cd;
+            font-weight: bold;
+        }
+
+        .business-table .total-row td {
+            border-top: 2px solid #ffc107;
+            padding: 15px 12px;
+        }
+
+        .business-table tr:nth-child(even):not(.total-row) {
+            background-color: #f8f9fa;
+        }
+
+        .business-table tr:hover:not(.total-row) {
+            background-color: #e3f2fd;
+        }
+
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
@@ -192,12 +262,15 @@
                 font-size: 1.8rem;
             }
             
-            .pricing-table {
+            .pricing-table,
+            .business-table {
                 font-size: 12px;
             }
             
             .pricing-table th,
-            .pricing-table td {
+            .pricing-table td,
+            .business-table th,
+            .business-table td {
                 padding: 8px;
             }
         }
@@ -320,6 +393,64 @@
             </ul>
             
             <p>Users who prioritize cutting-edge 5G speeds might still prefer Verizon, while those just looking for entertainment bundles and customer perks should consider T-Mobile.</p>
+        </div>
+
+        <div class="business-calc-section">
+            <h2>Rest of the Ans - Business Cost Analysis</h2>
+            
+            <table class="business-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Verizon</th>
+                        <th>AT&T</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="feature-col">Plan Cost (activation)</td>
+                        <td></td>
+                        <td class="number-col">35</td>
+                        <td class="number-col">30</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-col">Phone</td>
+                        <td></td>
+                        <td class="number-col">800</td>
+                        <td class="number-col">750</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-col">Tax+fees</td>
+                        <td></td>
+                        <td class="number-col">8</td>
+                        <td class="number-col">8</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-col">total (1 line 1 month)</td>
+                        <td></td>
+                        <td class="number-col">43</td>
+                        <td class="number-col">38</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-col">Total (1st month including phone)</td>
+                        <td></td>
+                        <td class="number-col">843</td>
+                        <td class="number-col">788</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-col">Number of employees</td>
+                        <td></td>
+                        <td class="number-col">35</td>
+                        <td class="number-col">35</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td class="feature-col">estimated total / month</td>
+                        <td></td>
+                        <td class="number-col">62.7083</td>
+                        <td class="number-col">55.41667</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSIT 471 - Information Systems Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .assignments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .assignment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .assignment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .assignment-card h3 {
+            color: #5a67d8;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .assignment-card p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .assignment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        
+        .status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status.completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status.in-progress {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status.upcoming {
+            background-color: #e2e3f0;
+            color: #383d41;
+        }
+        
+        .icon {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: white;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .assignments-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .assignment-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CSIT 472</h1>
+            <p>Information Systems Management</p>
+        </div>
+        
+        <div class="assignments-grid">
+            
+            <a href="exercise-5-12/" class="assignment-card">
+                <h3>
+                    <span class="icon">📊</span>
+                    Exercise 5.12 - Sales Conference Budget
+                </h3>
+                <p>Budget analysis for Foremost Composite Materials Company's sales conference in Miami, including flight costs, hotel selection, and meeting room requirements.</p>
+                <div class="assignment-meta">
+                    <span>Due: ?</span>
+                    <span class="status completed">Completed</span>
+                </div>
+            </a>
+            
+            <a href="project-1/" class="assignment-card">
+                <h3>
+                    <span class="icon">💼</span>
+                    My next project will go here- Coming Soon
+                </h3>
+                <p>Details will be added as assignments are added through the semester.</p>
+                <div class="assignment-meta">
+                    <span>TBD</span>
+                    <span class="status upcoming">Upcoming</span>
+                </div>
+            </a>
+            
+            <a href="case-study-1/" class="assignment-card">
+                <h3>
+                    <span class="icon">📚</span>
+                    Also Coming Soon!
+                </h3>
+                <p>Not sure what will go here yet.</p>
+                <div class="assignment-meta">
+                    <span>TBD</span>
+                    <span class="status upcoming">Upcoming</span>
+                </div>
+            </a>
+            
+            <a href="midterm-project/" class="assignment-card">
+                <h3>
+                    <span class="icon">🎯</span>
+                    Midterm Project
+                </h3>
+                <p>Midterm project showing understanding of information systems management</p>
+                <div class="assignment-meta">
+                    <span>TBD</span>
+                    <span class="status upcoming">Upcoming</span>
+                </div>
+            </a>
+            
+            <a href="final-project/" class="assignment-card">
+                <h3>
+                    <span class="icon">🏆</span>
+                    Final Project
+                </h3>
+                <p>Final project bringing together all course concepts and showing skill for IT management.</p>
+                <div class="assignment-meta">
+                    <span>TBD</span>
+                    <span class="status upcoming">Upcoming</span>
+                </div>
+            </a>
+            
+            <a href="resources/" class="assignment-card">
+                <h3>
+                    <span class="icon">📖</span>
+                    Course Resources
+                </h3>
+                <p>Useful links, references, and supplementary materials for CSIT 472.</p>
+                <div class="assignment-meta">
+                    <span>Always Available</span>
+                    <span class="status in-progress">Ongoing</span>
+                </div>
+            </a>
+            
+        </div>
+        
+        <div class="footer">
+            <p>CSIT 472 - Information Systems Management | Academic Year 2025</p>
+        </div>
+    </div>
+</body>
+</html>

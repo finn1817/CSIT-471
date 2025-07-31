@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 8-10: Mercer Paints Security Risk Assessment | Daniel Finn</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #e74c3c;
+        }
+
+        .header h1 {
+            color: #c0392b;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .header .student-info {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .project-overview {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #fdf2e9;
+            border-radius: 8px;
+            border-left: 5px solid #e67e22;
+        }
+
+        .project-overview h2 {
+            color: #d35400;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .vulnerability-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #fdedec;
+            border-radius: 8px;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .vulnerability-section h2 {
+            color: #c0392b;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .vulnerability-chart {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: end;
+            height: 300px;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .bar {
+            width: 80px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .bar:hover {
+            transform: scale(1.05);
+        }
+
+        .bar.high { 
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            height: 280px;
+        }
+
+        .bar.medium { 
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            height: 180px;
+        }
+
+        .bar.low { 
+            background: linear-gradient(135deg, #27ae60, #229954);
+            height: 100px;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #2c3e50;
+            white-space: nowrap;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+
+        .solution-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .solution-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .solution-card li {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .solution-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .risk-assessment {
+            margin-top: 40px;
+            padding: 25px;
+            background: #eaf2f8;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+
+        .risk-assessment h2 {
+            color: #2980b9;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .risk-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .risk-table th,
+        .risk-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .risk-table th {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            font-weight: bold;
+        }
+
+        .risk-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .risk-table tr:hover {
+            background-color: #e8f4f8;
+        }
+
+        .risk-high {
+            background-color: #f8d7da !important;
+            color: #721c24;
+        }
+
+        .risk-medium {
+            background-color: #fff3cd !important;
+            color: #856404;
+        }
+
+        .risk-low {
+            background-color: #d4edda !important;
+            color: #155724;
+        }
+
+        .recommendations {
+            margin-top: 40px;
+            padding: 25px;
+            background: #e8f5e8;
+            border-radius: 8px;
+            border-left: 5px solid #28a745;
+        }
+
+        .recommendations h2 {
+            color: #155724;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .priority-list {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .priority-list ol {
+            counter-reset: priority-counter;
+            list-style: none;
+            padding: 0;
+        }
+
+        .priority-list li {
+            counter-increment: priority-counter;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .priority-list li:before {
+            content: counter(priority-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #28a745;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .chart-container {
+                height: 250px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .bar {
+                width: 60px;
+            }
+            
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Exercise 8-10: Security Risk Assessment</h1>
+            <div class="student-info">Daniel Finn | Assignment 8-10 | Mercer Paints Security Analysis</div>
+        </div>
+
+        <div class="project-overview">
+            <h2>Project Overview</h2>
+            <p><strong>Company:</strong> Mercer Paints - Paint manufacturing company located in Alabama</p>
+            <p><strong>Network Setup:</strong> Uses a network to link its business operations with potential security vulnerabilities identified</p>
+            <p><strong>Objective:</strong> Conduct comprehensive security risk assessment, identify threats, assign probabilities, estimate annual losses, and provide strategic recommendations for risk mitigation</p>
+            <p><strong>Tools Used:</strong> Spreadsheet software for calculations, risk assessment data analysis, and loss estimation modeling</p>
+        </div>
+
+        <div class="vulnerability-section">
+            <h2>Security Vulnerabilities Assessment</h2>
+            
+            <div class="vulnerability-chart">
+                <h3>All Vulnerabilities Risk Analysis</h3>
+                <div class="chart-container">
+                    <div class="bar medium">
+                        <div class="bar-value">400</div>
+                        <div class="bar-label">Malware / Computer Virus</div>
+                    </div>
+                    <div class="bar low">
+                        <div class="bar-value">200</div>
+                        <div class="bar-label">Denial of Service Attack</div>
+                    </div>
+                    <div class="bar medium">
+                        <div class="bar-value">350</div>
+                        <div class="bar-label">Unauthorized Use</div>
+                    </div>
+                    <div class="bar low">
+                        <div class="bar-value">150</div>
+                        <div class="bar-label">Theft of Data</div>
+                    </div>
+                    <div class="bar high">
+                        <div class="bar-value">900</div>
+                        <div class="bar-label">Hardware / System Failure</div>
+                    </div>
+                </div>
+                <p><em>Risk levels based on potential annual losses and probability assessments</em></p>
+            </div>
+        </div>
+
+        <div class="risk-assessment">
+            <h2>Risk Assessment and Annual Loss Calculations</h2>
+            
+            <table class="risk-table">
+                <thead>
+                    <tr>
+                        <th>Threat Category</th>
+                        <th>Probability (%)</th>
+                        <th>Potential Loss ($)</th>
+                        <th>Expected Annual Loss ($)</th>
+                        <th>Risk Level</th>
+                        <th>Priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="risk-high">
+                        <td>Hardware / System Failure</td>
+                        <td>15%</td>
+                        <td>$6,000</td>
+                        <td>$900</td>
+                        <td>High</td>
+                        <td>1</td>
+                    </tr>
+                    <tr class="risk-medium">
+                        <td>Malware / Computer Virus</td>
+                        <td>20%</td>
+                        <td>$2,000</td>
+                        <td>$400</td>
+                        <td>Medium</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="risk-medium">
+                        <td>Unauthorized Access</td>
+                        <td>10%</td>
+                        <td>$3,500</td>
+                        <td>$350</td>
+                        <td>Medium</td>
+                        <td>3</td>
+                    </tr>
+                    <tr class="risk-low">
+                        <td>Denial of Service Attack</td>
+                        <td>8%</td>
+                        <td>$2,500</td>
+                        <td>$200</td>
+                        <td>Low</td>
+                        <td>4</td>
+                    </tr>
+                    <tr class="risk-low">
+                        <td>Data Theft / Breach</td>
+                        <td>5%</td>
+                        <td>$3,000</td>
+                        <td>$150</td>
+                        <td>Low</td>
+                        <td>5</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="background: #fff3cd; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                <h3 style="color: #856404; margin-bottom: 10px;">Total Expected Annual Loss: $2,000</h3>
+                <p style="color: #856404;"><strong>Risk Assessment Summary:</strong> Hardware/System failure shows the highest risk with chance of operation issues Immediate attention required for backup systems and hardware!</p>
+            </div>
+        </div>
+
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <h3>🔒 Inventory and Asset Management</h3>
+                <ul>
+                    <li>Inventory all devices on the network</li>
+                    <li>Set up all network discovery tools</li>
+                    <li>Write up some network rules to make sure no unauthorized access happens</li>
+                    <li>Set up a decommission process</li>
+                </ul>
+            </div>
+
+            <div class="solution-card">
+                <h3>🛠️ Fix Hardware / Software Issues</h3>
+                <ul>
+                    <li>Decommission or upgrade all devices to latest hardware</li>
+                    <li>Start a ticketing system</li>
+                    <li>Backup / Recovery plans</li>
+                    <li>Regular maintenance schedules</li>
+                </ul>
+            </div>
+
+            <div class="solution-card">
+                <h3>👥 Staff Training</h3>
+                <ul>
+                    <li>Staff should be trained on hardware & software security</li>
+                    <li>Continuous investment into resources for staff</li>
+                    <li>Regular security awareness updates</li>
+                </ul>
+            </div>
+
+            <div class="solution-card">
+                <h3>📊 Monitor</h3>
+                <ul>
+                    <li>Install monitoring software for all company owned devices</li>
+                    <li>Create stricter rules for "BYOD" devices - "Segmented network"</li>
+                    <li>Antimalware scans requirement</li>
+                    <li>Traffic monitoring for all devices in/out</li>
+                    <li>Block phishing websites</li>
+                </ul>
+            </div>
+
+            <div class="solution-card">
+                <h3>🔍 Audit</h3>
+                <ul>
+                    <li>3rd party audit yearly</li>
+                    <li>Strive for 0 vulnerabilities</li>
+                    <li>Continue to work on overall company security (long term)</li>
+                    <li>Regular compliance assessments</li>
+                </ul>
+            </div>
+
+            <div class="solution-card">
+                <h3>💼 Implementation Strategy</h3>
+                <ul>
+                    <li><strong>In House:</strong> More financially reasonable and faster, personalized support</li>
+                    <li><strong>External Contract:</strong> Specialized expertise when needed</li>
+                    <li>Hybrid approach for optimal cost-effectiveness</li>
+                    <li>Phased implementation over 12-18 months</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="recommendations">
+            <h2>Priority Recommendations for Mercer Paints</h2>
+            
+            <div class="priority-list">
+                <ol>
+                    <li><strong>Inventory and Asset Management (Already Done):</strong> Complete comprehensive asset inventory and implement discovery tools to maintain visibility of all network devices and potential entry points.</li>
+                    
+                    <li><strong>Vulnerability Assessment (Already Done):</strong> Conduct thorough vulnerability scanning and assessment to identify all potential security weaknesses in current infrastructure.</li>
+                    
+                    <li><strong>Create Priority List (Already Done):</strong> Establish risk-based priority system focusing on highest impact threats first, particularly hardware/system failures.</li>
+                    
+                    <li><strong>Fix Hardware / Software Issues:</strong> Address critical hardware vulnerabilities immediately, implement backup systems, and establish regular maintenance protocols to prevent $900 annual loss from system failures.</li>
+                    
+                    <li><strong>Staff Training:</strong> Implement comprehensive security awareness training program to reduce human error factors contributing to malware and unauthorized access incidents.</li>
+                    
+                    <li><strong>Monitor:</strong> Deploy continuous monitoring solutions including SIEM systems, network traffic analysis, and endpoint detection to provide real-time threat visibility.</li>
+                    
+                    <li><strong>Audit:</strong> Establish regular third-party security audits and internal compliance reviews to ensure ongoing security posture improvement and regulatory compliance.</li>
+                </ol>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 20px; border: 2px solid #28a745;">
+                <h3 style="color: #155724; margin-bottom: 15px;">Final Recommendation</h3>
+                <p><strong>Immediate Action Required:</strong> Focus on hardware/system reliability improvements as this represents 45% of total risk exposure ($900 of $2,000 annual loss). Implement redundant systems and comprehensive backup solutions within 90 days.</p>
+                <p><strong>Long-term Strategy:</strong> Develop integrated security program combining in-house capabilities with external expertise for specialized needs. This hybrid approach provides cost-effective security while maintaining rapid response capabilities.</p>
+                <p><strong>Expected ROI:</strong> Investment in comprehensive security program should reduce annual risk exposure by 60-80%, providing positive return within 18-24 months while significantly improving operational resilience.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

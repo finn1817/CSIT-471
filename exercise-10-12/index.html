@@ -70,10 +70,6 @@
         .metric-negative {
             color: #d13438;
         }
-        .chart-container {
-            height: 400px;
-            margin: 20px 0;
-        }
         .analysis-section {
             background: white;
             border-radius: 8px;
@@ -136,6 +132,93 @@
             content: "●";
             color: gray;
         }
+        
+        /* CSS-based charts */
+        .pie-chart-container {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            margin: 20px 0;
+        }
+        .pie-chart {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #0078d4 0% 51%,
+                #50e6ff 51% 82%,
+                #81b0d2 82% 100%
+            );
+            margin: 0 auto;
+        }
+        .pie-legend {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            margin-right: 8px;
+        }
+        
+        .bar-chart-container {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            margin: 20px 0;
+            padding-top: 20px;
+        }
+        .bar-chart {
+            display: flex;
+            height: 300px;
+            justify-content: space-around;
+            align-items: flex-end;
+            padding: 0 40px;
+        }
+        .bar-group {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        .bar {
+            width: 40px;
+            background-color: #0078d4;
+            position: relative;
+            transition: height 0.5s;
+        }
+        .bar-label {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 14px;
+        }
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .bar-chart-legend {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -145,6 +228,9 @@
             }
             th, td {
                 padding: 8px 10px;
+            }
+            .bar {
+                width: 25px;
             }
         }
     </style>
@@ -464,23 +550,202 @@
         <div id="charts" class="tab-content">
             <div class="analysis-section">
                 <h2>Revenue Composition (FY 2025)</h2>
-                <div class="chart-container" id="revenue-composition-chart"></div>
+                <div class="pie-chart-container">
+                    <div class="pie-chart"></div>
+                    <div class="pie-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #0078d4;"></div>
+                            <div>Intelligent Cloud: $129,476M (51%)</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #50e6ff;"></div>
+                            <div>Productivity & Business: $78,463M (31%)</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #81b0d2;"></div>
+                            <div>Personal Computing: $46,187M (18%)</div>
+                        </div>
+                    </div>
+                </div>
                 
                 <h2>Revenue Trend by Segment (2023-2025)</h2>
-                <div class="chart-container" id="revenue-trend-chart"></div>
+                <div class="bar-chart-container">
+                    <div class="bar-chart">
+                        <div class="bar-group">
+                            <div class="bar" style="height: 203px; background-color: #0078d4;">
+                                <div class="bar-value">87,903</div>
+                                <div class="bar-label">Cloud<br>2023</div>
+                            </div>
+                            <div class="bar" style="height: 155px; background-color: #50e6ff;">
+                                <div class="bar-value">67,084</div>
+                                <div class="bar-label">Office<br>2023</div>
+                            </div>
+                            <div class="bar" style="height: 131px; background-color: #81b0d2;">
+                                <div class="bar-value">56,928</div>
+                                <div class="bar-label">PC<br>2023</div>
+                            </div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" style="height: 245px; background-color: #0078d4;">
+                                <div class="bar-value">106,128</div>
+                                <div class="bar-label">Cloud<br>2024</div>
+                            </div>
+                            <div class="bar" style="height: 168px; background-color: #50e6ff;">
+                                <div class="bar-value">72,651</div>
+                                <div class="bar-label">Office<br>2024</div>
+                            </div>
+                            <div class="bar" style="height: 126px; background-color: #81b0d2;">
+                                <div class="bar-value">54,428</div>
+                                <div class="bar-label">PC<br>2024</div>
+                            </div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" style="height: 300px; background-color: #0078d4;">
+                                <div class="bar-value">129,476</div>
+                                <div class="bar-label">Cloud<br>2025</div>
+                            </div>
+                            <div class="bar" style="height: 182px; background-color: #50e6ff;">
+                                <div class="bar-value">78,463</div>
+                                <div class="bar-label">Office<br>2025</div>
+                            </div>
+                            <div class="bar" style="height: 107px; background-color: #81b0d2;">
+                                <div class="bar-value">46,187</div>
+                                <div class="bar-label">PC<br>2025</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #0078d4;"></div>
+                            <div>Intelligent Cloud</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #50e6ff;"></div>
+                            <div>Productivity & Business Processes</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #81b0d2;"></div>
+                            <div>More Personal Computing</div>
+                        </div>
+                    </div>
+                </div>
                 
                 <h2>Profitability Metrics (2023-2025)</h2>
-                <div class="chart-container" id="profitability-chart"></div>
+                <div class="bar-chart-container">
+                    <div class="bar-chart">
+                        <div class="bar-group">
+                            <div class="bar" style="height: 200px; background-color: #0078d4;">
+                                <div class="bar-value">66.7%</div>
+                                <div class="bar-label">Gross<br>2023</div>
+                            </div>
+                            <div class="bar" style="height: 102px; background-color: #50e6ff;">
+                                <div class="bar-value">34.1%</div>
+                                <div class="bar-label">Operating<br>2023</div>
+                            </div>
+                            <div class="bar" style="height: 102px; background-color: #81b0d2;">
+                                <div class="bar-value">34.1%</div>
+                                <div class="bar-label">Net<br>2023</div>
+                            </div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" style="height: 203px; background-color: #0078d4;">
+                                <div class="bar-value">67.8%</div>
+                                <div class="bar-label">Gross<br>2024</div>
+                            </div>
+                            <div class="bar" style="height: 107px; background-color: #50e6ff;">
+                                <div class="bar-value">35.8%</div>
+                                <div class="bar-label">Operating<br>2024</div>
+                            </div>
+                            <div class="bar" style="height: 99px; background-color: #81b0d2;">
+                                <div class="bar-value">33.2%</div>
+                                <div class="bar-label">Net<br>2024</div>
+                            </div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" style="height: 206px; background-color: #0078d4;">
+                                <div class="bar-value">68.6%</div>
+                                <div class="bar-label">Gross<br>2025</div>
+                            </div>
+                            <div class="bar" style="height: 109px; background-color: #50e6ff;">
+                                <div class="bar-value">36.4%</div>
+                                <div class="bar-label">Operating<br>2025</div>
+                            </div>
+                            <div class="bar" style="height: 101px; background-color: #81b0d2;">
+                                <div class="bar-value">33.8%</div>
+                                <div class="bar-label">Net<br>2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
                 <h2>Cash Flow Analysis (2023-2025)</h2>
-                <div class="chart-container" id="cash-flow-chart"></div>
+                <div class="bar-chart-container">
+                    <div class="bar-chart">
+                        <div class="bar-group">
+                            <div class="bar" style="height: 253px; background-color: #0078d4;">
+                                <div class="bar-value">87,902</div>
+                                <div class="bar-label">Operating<br>2023</div>
+                            </div>
+                            <div class="bar" style="height: 78px; background-color: #d13438;">
+                                <div class="bar-value">27,148</div>
+                                <div class="bar-label">CapEx<br>2023</div>
+                            </div>
+                            <div class="bar" style="height: 175px; background-color: #107c41;">
+                                <div class="bar-value">60,754</div>
+                                <div class="bar-label">Free CF<br>2023</div>
+                            </div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" style="height: 270px; background-color: #0078d4;">
+                                <div class="bar-value">93,846</div>
+                                <div class="bar-label">Operating<br>2024</div>
+                            </div>
+                            <div class="bar" style="height: 94px; background-color: #d13438;">
+                                <div class="bar-value">32,563</div>
+                                <div class="bar-label">CapEx<br>2024</div>
+                            </div>
+                            <div class="bar" style="height: 176px; background-color: #107c41;">
+                                <div class="bar-value">61,283</div>
+                                <div class="bar-label">Free CF<br>2024</div>
+                            </div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" style="height: 300px; background-color: #0078d4;">
+                                <div class="bar-value">104,237</div>
+                                <div class="bar-label">Operating<br>2025</div>
+                            </div>
+                            <div class="bar" style="height: 121px; background-color: #d13438;">
+                                <div class="bar-value">41,892</div>
+                                <div class="bar-label">CapEx<br>2025</div>
+                            </div>
+                            <div class="bar" style="height: 179px; background-color: #107c41;">
+                                <div class="bar-value">62,345</div>
+                                <div class="bar-label">Free CF<br>2025</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #0078d4;"></div>
+                            <div>Operating Cash Flow</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #d13438;"></div>
+                            <div>Capital Expenditures</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #107c41;"></div>
+                            <div>Free Cash Flow</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div id="conclusion" class="tab-content">
             <div class="conclusion">
                 <h2>Microsoft as a Dot-Com Success Story</h2>
-                <p>Based on the financial analysis of Microsoft Corporation from FY 2023 to FY 2025, the company clearly represents a dot-com success story. Microsoft has successfully transformed from a traditional software company to a cloud-first, subscription-based technology leader.</p>
+                <p>Based on the comprehensive financial analysis of Microsoft Corporation from FY 2023 to FY 2025, the company clearly represents a dot-com success story. Microsoft has successfully transformed from a traditional software company to a cloud-first, subscription-based technology leader.</p>
                 
                 <h3>Key Success Indicators:</h3>
                 <ol>
@@ -498,20 +763,19 @@
                 <h3>Future Outlook:</h3>
                 <p>Based on the three-year financial trends, Microsoft's future outlook remains strongly positive:</p>
                 <ul>
-                    <li>Cloud services will continue to grow, Azure maintains its position as a key revenue generator.</li>
-                    <li>Subscription-based products will provide good, recurring revenue streams.</li>
-                    <li>Strategic investments in AI and computing position the company for future innovation.</li>
+                    <li>Cloud services will continue to drive growth, with Azure maintaining its position as a key revenue generator.</li>
+                    <li>Subscription-based products will provide stable, recurring revenue streams.</li>
+                    <li>Strategic investments in AI and quantum computing position the company for future innovation.</li>
                     <li>Strong cash reserves provide flexibility for strategic acquisitions and market expansion.</li>
                 </ul>
                 
-                <p>While challenges do exist, including the declining Personal Computing piece, with increased competition thats always getting bigger, Microsoft's flow, strong presence, and financial stability keep it what we all know it as today.</p>
+                <p>While challenges exist, including the declining Personal Computing segment and increased competition in the cloud space, Microsoft's diversified revenue streams, strong brand presence, and financial stability position it for continued success in the digital economy.</p>
                 
-                <p>conclusion is that Microsoft's change from a traditional software company to a cloud and subscription service leader represents one of the most successful changes in tech industry history, establishing it as a major success story.</p>
+                <p>In conclusion, Microsoft's transformation from a traditional software company to a cloud and subscription services leader represents one of the most successful pivots in tech industry history, firmly establishing it as a dot-com success story.</p>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Tab functionality
         function openTab(evt, tabName) {
@@ -526,208 +790,7 @@
             }
             document.getElementById(tabName).className += " active";
             evt.currentTarget.className += " active";
-            
-            // Initialize charts if charts tab is selected
-            if (tabName === 'charts') {
-                initializeCharts();
-            }
         }
-
-        // Initialize charts
-        function initializeCharts() {
-            // Revenue Composition Chart
-            const revenueCompositionCtx = document.getElementById('revenue-composition-chart').getContext('2d');
-            new Chart(revenueCompositionCtx, {
-                type: 'pie',
-                data: {
-                    labels: ['Intelligent Cloud', 'Productivity and Business Processes', 'More Personal Computing'],
-                    datasets: [{
-                        data: [129476, 78463, 46187],
-                        backgroundColor: ['#0078d4', '#50e6ff', '#81b0d2'],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Revenue Composition FY 2025 (in millions USD)',
-                            font: { size: 16 }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.label || '';
-                                    let value = context.raw;
-                                    let percentage = ((value / 254126) * 100).toFixed(1);
-                                    return `${label}: $${value}M (${percentage}%)`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Revenue Trend Chart
-            const revenueTrendCtx = document.getElementById('revenue-trend-chart').getContext('2d');
-            new Chart(revenueTrendCtx, {
-                type: 'line',
-                data: {
-                    labels: ['FY 2023', 'FY 2024', 'FY 2025'],
-                    datasets: [
-                        {
-                            label: 'Intelligent Cloud',
-                            data: [87903, 106128, 129476],
-                            borderColor: '#0078d4',
-                            backgroundColor: 'rgba(0, 120, 212, 0.1)',
-                            fill: true,
-                            tension: 0.1
-                        },
-                        {
-                            label: 'Productivity and Business Processes',
-                            data: [67084, 72651, 78463],
-                            borderColor: '#50e6ff',
-                            backgroundColor: 'rgba(80, 230, 255, 0.1)',
-                            fill: true,
-                            tension: 0.1
-                        },
-                        {
-                            label: 'More Personal Computing',
-                            data: [56928, 54428, 46187],
-                            borderColor: '#81b0d2',
-                            backgroundColor: 'rgba(129, 176, 210, 0.1)',
-                            fill: true,
-                            tension: 0.1
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Revenue Trend by Segment (in millions USD)',
-                            font: { size: 16 }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Revenue (in millions USD)'
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Profitability Chart
-            const profitabilityCtx = document.getElementById('profitability-chart').getContext('2d');
-            new Chart(profitabilityCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['FY 2023', 'FY 2024', 'FY 2025'],
-                    datasets: [
-                        {
-                            label: 'Gross Margin (%)',
-                            data: [66.7, 67.8, 68.6],
-                            backgroundColor: '#0078d4',
-                            yAxisID: 'y'
-                        },
-                        {
-                            label: 'Operating Margin (%)',
-                            data: [34.1, 35.8, 36.4],
-                            backgroundColor: '#50e6ff',
-                            yAxisID: 'y'
-                        },
-                        {
-                            label: 'Net Profit Margin (%)',
-                            data: [34.1, 33.2, 33.8],
-                            backgroundColor: '#81b0d2',
-                            yAxisID: 'y'
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Profitability Metrics',
-                            font: { size: 16 }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Percentage (%)'
-                            },
-                            max: 100
-                        }
-                    }
-                }
-            });
-
-            // Cash Flow Chart
-            const cashFlowCtx = document.getElementById('cash-flow-chart').getContext('2d');
-            new Chart(cashFlowCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['FY 2023', 'FY 2024', 'FY 2025'],
-                    datasets: [
-                        {
-                            label: 'Operating Cash Flow',
-                            data: [87902, 93846, 104237],
-                            backgroundColor: '#0078d4',
-                        },
-                        {
-                            label: 'Capital Expenditures',
-                            data: [27148, 32563, 41892],
-                            backgroundColor: '#d13438',
-                        },
-                        {
-                            label: 'Free Cash Flow',
-                            data: [60754, 61283, 62345],
-                            backgroundColor: '#107c41',
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Cash Flow Analysis (in millions USD)',
-                            font: { size: 16 }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Amount (in millions USD)'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        // Initial load of charts if charts tab is the default active tab
-        document.addEventListener('DOMContentLoaded', function() {
-            if (document.getElementById('charts').classList.contains('active')) {
-                initializeCharts();
-            }
-        });
     </script>
 </body>
 </html>

@@ -65,6 +65,15 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
         
+        .assignment-card.featured {
+            border: 3px solid #f39c12;
+            box-shadow: 0 8px 25px rgba(243, 156, 18, 0.3);
+        }
+        
+        .assignment-card.featured:hover {
+            box-shadow: 0 15px 35px rgba(243, 156, 18, 0.4);
+        }
+        
         .assignment-card h3 {
             color: #5a67d8;
             font-size: 1.4rem;
@@ -72,6 +81,10 @@
             display: flex;
             align-items: center;
             gap: 10px;
+        }
+        
+        .assignment-card.featured h3 {
+            color: #e67e22;
         }
         
         .assignment-card p {
@@ -105,6 +118,12 @@
         .status.in-progress {
             background-color: #fff3cd;
             color: #856404;
+        }
+        
+        .status.featured {
+            background-color: #ffeaa7;
+            color: #d63031;
+            font-weight: bold;
         }
         
         .status.upcoming {
@@ -261,15 +280,15 @@
                 </div>
             </a>
             
-            <a href="#" class="assignment-card" style="pointer-events: none; opacity: 0.7;">
+            <a href="Midterm/" class="assignment-card featured">
                 <h3>
-                    <span class="icon">🎯</span>
-                    Midterm Project
+                    <span class="icon">🏨</span>
+                    Midterm Project - Hotel Management System
                 </h3>
-                <p>Midterm project demonstrating understanding of information systems management principles and real-world applications.</p>
+                <p>Complete database management system for hotel reservations featuring queries, forms, reports, and business analysis. Demonstrates real-world application of information systems in hospitality management.</p>
                 <div class="assignment-meta">
-                    <span>TBD</span>
-                    <span class="status upcoming">Upcoming</span>
+                    <span>Database Management Project</span>
+                    <span class="status featured">📍 Midterm Project</span>
                 </div>
             </a>
             

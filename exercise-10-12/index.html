@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Financial Analysis 2023-2025</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f7f9fc;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #0078d4;
+            padding-bottom: 20px;
+        }
+        h1 {
+            color: #0078d4;
+        }
+        h2 {
+            color: #0078d4;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .financial-statement {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            flex: 1 1 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: right;
+        }
+        th {
+            background-color: #f2f7fd;
+            color: #0078d4;
+            font-weight: bold;
+            text-align: left;
+        }
+        th:not(:first-child) {
+            text-align: right;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .metric-positive {
+            color: #107c41;
+        }
+        .metric-negative {
+            color: #d13438;
+        }
+        .chart-container {
+            height: 400px;
+            margin: 20px 0;
+        }
+        .analysis-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .conclusion {
+            background-color: #e6f3ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .tab-container {
+            margin: 20px 0;
+        }
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #f2f7fd;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            margin-right: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .tab.active {
+            background: white;
+            border-bottom: 1px solid white;
+            margin-bottom: -1px;
+            color: #0078d4;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-top: none;
+            background: white;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .trend-indicator::before {
+            margin-right: 5px;
+        }
+        .trend-up::before {
+            content: "▲";
+            color: green;
+        }
+        .trend-down::before {
+            content: "▼";
+            color: red;
+        }
+        .trend-neutral::before {
+            content: "●";
+            color: gray;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Microsoft Corporation (MSFT)</h1>
+        <p>Financial Analysis 2023-2025</p>
+    </header>
+
+    <div class="tab-container">
+        <div class="tabs">
+            <div class="tab active" onclick="openTab(event, 'financial-data')">Financial Data</div>
+            <div class="tab" onclick="openTab(event, 'analysis')">Analysis</div>
+            <div class="tab" onclick="openTab(event, 'charts')">Charts</div>
+            <div class="tab" onclick="openTab(event, 'conclusion')">Conclusion</div>
+        </div>
+
+        <div id="financial-data" class="tab-content active">
+            <h2>Income Statement (in millions USD)</h2>
+            <div class="financial-statement">
+                <table>
+                    <tr>
+                        <th>Metric</th>
+                        <th>FY 2023</th>
+                        <th>FY 2024</th>
+                        <th>FY 2025</th>
+                        <th>% Change (2024-2025)</th>
+                    </tr>
+                    <tr>
+                        <td>Revenue</td>
+                        <td>211,915</td>
+                        <td>233,207</td>
+                        <td>254,126</td>
+                        <td class="metric-positive">+9.0%</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Productivity and Business Processes</td>
+                        <td>67,084</td>
+                        <td>72,651</td>
+                        <td>78,463</td>
+                        <td class="metric-positive">+8.0%</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;Intelligent Cloud</td>
+                        <td>87,903</td>
+                        <td>106,128</td>
+                        <td>129,476</td>
+                        <td class="metric-positive">+22.0%</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;More Personal Computing</td>
+                        <td>56,928</td>
+                        <td>54,428</td>
+                        <td>46,187</td>
+                        <td class="metric-negative">-15.1%</td>
+                    </tr>
+                    <tr>
+                        <td>Cost of Revenue</td>
+                        <td>70,548</td>
+                        <td>75,062</td>
+                        <td>79,815</td>
+                        <td class="metric-negative">+6.3%</td>
+                    </tr>
+                    <tr>
+                        <td>Gross Profit</td>
+                        <td>141,367</td>
+                        <td>158,145</td>
+                        <td>174,311</td>
+                        <td class="metric-positive">+10.2%</td>
+                    </tr>
+                    <tr>
+                        <td>Operating Expenses</td>
+                        <td>69,140</td>
+                        <td>74,625</td>
+                        <td>81,740</td>
+                        <td class="metric-negative">+9.5%</td>
+                    </tr>
+                    <tr>
+                        <td>Operating Income</td>
+                        <td>72,227</td>
+                        <td>83,520</td>
+                        <td>92,571</td>
+                        <td class="metric-positive">+10.8%</td>
+                    </tr>
+                    <tr>
+                        <td>Net Income</td>
+                        <td>72,361</td>
+                        <td>77,466</td>
+                        <td>85,892</td>
+                        <td class="metric-positive">+10.9%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2>Balance Sheet (in millions USD)</h2>
+            <div class="financial-statement">
+                <table>
+                    <tr>
+                        <th>Metric</th>
+                        <th>FY 2023</th>
+                        <th>FY 2024</th>
+                        <th>FY 2025</th>
+                        <th>% Change (2024-2025)</th>
+                    </tr>
+                    <tr>
+                        <td>Cash and Cash Equivalents</td>
+                        <td>34,704</td>
+                        <td>38,987</td>
+                        <td>44,562</td>
+                        <td class="metric-positive">+14.3%</td>
+                    </tr>
+                    <tr>
+                        <td>Short-term Investments</td>
+                        <td>77,922</td>
+                        <td>82,046</td>
+                        <td>86,123</td>
+                        <td class="metric-positive">+5.0%</td>
+                    </tr>
+                    <tr>
+                        <td>Total Current Assets</td>
+                        <td>168,680</td>
+                        <td>180,724</td>
+                        <td>196,142</td>
+                        <td class="metric-positive">+8.5%</td>
+                    </tr>
+                    <tr>
+                        <td>Property and Equipment, Net</td>
+                        <td>81,763</td>
+                        <td>98,116</td>
+                        <td>123,670</td>
+                        <td class="metric-positive">+26.0%</td>
+                    </tr>
+                    <tr>
+                        <td>Total Assets</td>
+                        <td>364,840</td>
+                        <td>401,241</td>
+                        <td>442,869</td>
+                        <td class="metric-positive">+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>Total Current Liabilities</td>
+                        <td>97,301</td>
+                        <td>103,148</td>
+                        <td>109,732</td>
+                        <td class="metric-negative">+6.4%</td>
+                    </tr>
+                    <tr>
+                        <td>Long-term Debt</td>
+                        <td>45,316</td>
+                        <td>47,908</td>
+                        <td>48,756</td>
+                        <td class="metric-negative">+1.8%</td>
+                    </tr>
+                    <tr>
+                        <td>Total Liabilities</td>
+                        <td>196,732</td>
+                        <td>213,869</td>
+                        <td>225,473</td>
+                        <td class="metric-negative">+5.4%</td>
+                    </tr>
+                    <tr>
+                        <td>Total Stockholders' Equity</td>
+                        <td>168,108</td>
+                        <td>187,372</td>
+                        <td>217,396</td>
+                        <td class="metric-positive">+16.0%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2>Cash Flow Statement (in millions USD)</h2>
+            <div class="financial-statement">
+                <table>
+                    <tr>
+                        <th>Metric</th>
+                        <th>FY 2023</th>
+                        <th>FY 2024</th>
+                        <th>FY 2025</th>
+                        <th>% Change (2024-2025)</th>
+                    </tr>
+                    <tr>
+                        <td>Net Cash from Operations</td>
+                        <td>87,902</td>
+                        <td>93,846</td>
+                        <td>104,237</td>
+                        <td class="metric-positive">+11.1%</td>
+                    </tr>
+                    <tr>
+                        <td>Capital Expenditures</td>
+                        <td>27,148</td>
+                        <td>32,563</td>
+                        <td>41,892</td>
+                        <td class="metric-negative">+28.6%</td>
+                    </tr>
+                    <tr>
+                        <td>Free Cash Flow</td>
+                        <td>60,754</td>
+                        <td>61,283</td>
+                        <td>62,345</td>
+                        <td class="metric-positive">+1.7%</td>
+                    </tr>
+                    <tr>
+                        <td>Cash Used for Dividends</td>
+                        <td>19,733</td>
+                        <td>21,504</td>
+                        <td>23,876</td>
+                        <td class="metric-negative">+11.0%</td>
+                    </tr>
+                    <tr>
+                        <td>Cash Used for Share Repurchases</td>
+                        <td>29,169</td>
+                        <td>25,632</td>
+                        <td>21,987</td>
+                        <td class="metric-positive">-14.2%</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="analysis" class="tab-content">
+            <div class="analysis-section">
+                <h2>Financial Ratio Analysis</h2>
+                <table>
+                    <tr>
+                        <th>Ratio</th>
+                        <th>FY 2023</th>
+                        <th>FY 2024</th>
+                        <th>FY 2025</th>
+                        <th>Trend</th>
+                    </tr>
+                    <tr>
+                        <td>Gross Margin</td>
+                        <td>66.7%</td>
+                        <td>67.8%</td>
+                        <td>68.6%</td>
+                        <td class="trend-indicator trend-up">Improving</td>
+                    </tr>
+                    <tr>
+                        <td>Operating Margin</td>
+                        <td>34.1%</td>
+                        <td>35.8%</td>
+                        <td>36.4%</td>
+                        <td class="trend-indicator trend-up">Improving</td>
+                    </tr>
+                    <tr>
+                        <td>Net Profit Margin</td>
+                        <td>34.1%</td>
+                        <td>33.2%</td>
+                        <td>33.8%</td>
+                        <td class="trend-indicator trend-neutral">Stable</td>
+                    </tr>
+                    <tr>
+                        <td>Return on Assets (ROA)</td>
+                        <td>19.8%</td>
+                        <td>19.3%</td>
+                        <td>19.4%</td>
+                        <td class="trend-indicator trend-neutral">Stable</td>
+                    </tr>
+                    <tr>
+                        <td>Return on Equity (ROE)</td>
+                        <td>43.0%</td>
+                        <td>41.3%</td>
+                        <td>39.5%</td>
+                        <td class="trend-indicator trend-down">Slight Decline</td>
+                    </tr>
+                    <tr>
+                        <td>Current Ratio</td>
+                        <td>1.73</td>
+                        <td>1.75</td>
+                        <td>1.79</td>
+                        <td class="trend-indicator trend-up">Improving</td>
+                    </tr>
+                    <tr>
+                        <td>Debt-to-Equity</td>
+                        <td>0.27</td>
+                        <td>0.26</td>
+                        <td>0.22</td>
+                        <td class="trend-indicator trend-up">Improving</td>
+                    </tr>
+                    <tr>
+                        <td>Interest Coverage Ratio</td>
+                        <td>37.8</td>
+                        <td>42.3</td>
+                        <td>45.6</td>
+                        <td class="trend-indicator trend-up">Improving</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="analysis-section">
+                <h2>Segment Performance Analysis</h2>
+                <h3>Intelligent Cloud (Azure, Server Products)</h3>
+                <p>The Intelligent Cloud segment has shown remarkable growth over the three-year period, with a 22% increase in the last fiscal year alone. This segment now represents 51% of Microsoft's total revenue, up from 41.5% in FY 2023. The consistent growth in this segment demonstrates Microsoft's successful pivot to cloud services and validates their strategic investments in Azure infrastructure.</p>
+                
+                <h3>Productivity and Business Processes (Office 365, LinkedIn, Dynamics)</h3>
+                <p>This segment has maintained steady growth at 8% year-over-year, showing the resilience of Microsoft's subscription-based model for Office products. The transition from one-time license sales to recurring subscription revenue has created a more stable revenue stream and improved customer retention.</p>
+                
+                <h3>More Personal Computing (Windows, Xbox, Surface)</h3>
+                <p>This segment has shown a consistent decline over the three-year period, with a significant 15.1% drop in the last fiscal year. This trend reflects Microsoft's strategic shift away from traditional personal computing products toward cloud services and subscription models. Despite this decline, the segment remains profitable and continues to provide cash flow for investments in growth areas.</p>
+            </div>
+
+            <div class="analysis-section">
+                <h2>Financial Health Assessment</h2>
+                <p>Microsoft's financial health remains exceptionally strong. The company has:</p>
+                <ul>
+                    <li>Maintained a healthy current ratio of 1.79, indicating strong liquidity</li>
+                    <li>Reduced its debt-to-equity ratio to 0.22, demonstrating conservative financial management</li>
+                    <li>Generated over $104 billion in operating cash flow, a 11.1% increase year-over-year</li>
+                    <li>Increased capital expenditures by 28.6%, primarily for data center expansion to support Azure growth</li>
+                    <li>Returned $45.8 billion to shareholders through dividends and share repurchases</li>
+                </ul>
+                <p>The company's strong cash position and minimal debt levels provide significant flexibility for future acquisitions, research and development investments, and shareholder returns.</p>
+            </div>
+        </div>
+
+        <div id="charts" class="tab-content">
+            <div class="analysis-section">
+                <h2>Revenue Composition (FY 2025)</h2>
+                <div class="chart-container" id="revenue-composition-chart"></div>
+                
+                <h2>Revenue Trend by Segment (2023-2025)</h2>
+                <div class="chart-container" id="revenue-trend-chart"></div>
+                
+                <h2>Profitability Metrics (2023-2025)</h2>
+                <div class="chart-container" id="profitability-chart"></div>
+                
+                <h2>Cash Flow Analysis (2023-2025)</h2>
+                <div class="chart-container" id="cash-flow-chart"></div>
+            </div>
+        </div>
+
+        <div id="conclusion" class="tab-content">
+            <div class="conclusion">
+                <h2>Microsoft as a Dot-Com Success Story</h2>
+                <p>Based on the financial analysis of Microsoft Corporation from FY 2023 to FY 2025, the company clearly represents a dot-com success story. Microsoft has successfully transformed from a traditional software company to a cloud-first, subscription-based technology leader.</p>
+                
+                <h3>Key Success Indicators:</h3>
+                <ol>
+                    <li><strong>Sustained Revenue Growth:</strong> Microsoft has achieved consistent revenue growth, with a 9% increase in the last fiscal year, reaching $254.1 billion in FY 2025.</li>
+                    
+                    <li><strong>Successful Business Model Transformation:</strong> The company has successfully shifted from one-time license sales to recurring subscription revenue, as evidenced by the growth in the Productivity and Business Processes segment.</li>
+                    
+                    <li><strong>Cloud Leadership:</strong> The Intelligent Cloud segment has grown at an impressive 22% year-over-year, demonstrating Microsoft's strong position in the cloud computing market through Azure.</li>
+                    
+                    <li><strong>Expanding Profit Margins:</strong> Despite significant investments in infrastructure and R&D, Microsoft has maintained and even expanded its profit margins, with a gross margin of 68.6% and operating margin of 36.4% in FY 2025.</li>
+                    
+                    <li><strong>Strong Financial Health:</strong> The company maintains excellent liquidity, manageable debt levels, and generates substantial free cash flow, enabling continued investments in growth areas while returning value to shareholders.</li>
+                </ol>
+                
+                <h3>Future Outlook:</h3>
+                <p>Based on the three-year financial trends, Microsoft's future outlook remains strongly positive:</p>
+                <ul>
+                    <li>Cloud services will continue to grow, Azure maintains its position as a key revenue generator.</li>
+                    <li>Subscription-based products will provide good, recurring revenue streams.</li>
+                    <li>Strategic investments in AI and computing position the company for future innovation.</li>
+                    <li>Strong cash reserves provide flexibility for strategic acquisitions and market expansion.</li>
+                </ul>
+                
+                <p>While challenges do exist, including the declining Personal Computing piece, with increased competition thats always getting bigger, Microsoft's flow, strong presence, and financial stability keep it what we all know it as today.</p>
+                
+                <p>conclusion is that Microsoft's change from a traditional software company to a cloud and subscription service leader represents one of the most successful changes in tech industry history, establishing it as a major success story.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Tab functionality
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].className = tabcontent[i].className.replace(" active", "");
+            }
+            tablinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).className += " active";
+            evt.currentTarget.className += " active";
+            
+            // Initialize charts if charts tab is selected
+            if (tabName === 'charts') {
+                initializeCharts();
+            }
+        }
+
+        // Initialize charts
+        function initializeCharts() {
+            // Revenue Composition Chart
+            const revenueCompositionCtx = document.getElementById('revenue-composition-chart').getContext('2d');
+            new Chart(revenueCompositionCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Intelligent Cloud', 'Productivity and Business Processes', 'More Personal Computing'],
+                    datasets: [{
+                        data: [129476, 78463, 46187],
+                        backgroundColor: ['#0078d4', '#50e6ff', '#81b0d2'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Revenue Composition FY 2025 (in millions USD)',
+                            font: { size: 16 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    let value = context.raw;
+                                    let percentage = ((value / 254126) * 100).toFixed(1);
+                                    return `${label}: $${value}M (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Revenue Trend Chart
+            const revenueTrendCtx = document.getElementById('revenue-trend-chart').getContext('2d');
+            new Chart(revenueTrendCtx, {
+                type: 'line',
+                data: {
+                    labels: ['FY 2023', 'FY 2024', 'FY 2025'],
+                    datasets: [
+                        {
+                            label: 'Intelligent Cloud',
+                            data: [87903, 106128, 129476],
+                            borderColor: '#0078d4',
+                            backgroundColor: 'rgba(0, 120, 212, 0.1)',
+                            fill: true,
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Productivity and Business Processes',
+                            data: [67084, 72651, 78463],
+                            borderColor: '#50e6ff',
+                            backgroundColor: 'rgba(80, 230, 255, 0.1)',
+                            fill: true,
+                            tension: 0.1
+                        },
+                        {
+                            label: 'More Personal Computing',
+                            data: [56928, 54428, 46187],
+                            borderColor: '#81b0d2',
+                            backgroundColor: 'rgba(129, 176, 210, 0.1)',
+                            fill: true,
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Revenue Trend by Segment (in millions USD)',
+                            font: { size: 16 }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Revenue (in millions USD)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Profitability Chart
+            const profitabilityCtx = document.getElementById('profitability-chart').getContext('2d');
+            new Chart(profitabilityCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['FY 2023', 'FY 2024', 'FY 2025'],
+                    datasets: [
+                        {
+                            label: 'Gross Margin (%)',
+                            data: [66.7, 67.8, 68.6],
+                            backgroundColor: '#0078d4',
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Operating Margin (%)',
+                            data: [34.1, 35.8, 36.4],
+                            backgroundColor: '#50e6ff',
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Net Profit Margin (%)',
+                            data: [34.1, 33.2, 33.8],
+                            backgroundColor: '#81b0d2',
+                            yAxisID: 'y'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Profitability Metrics',
+                            font: { size: 16 }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Percentage (%)'
+                            },
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Cash Flow Chart
+            const cashFlowCtx = document.getElementById('cash-flow-chart').getContext('2d');
+            new Chart(cashFlowCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['FY 2023', 'FY 2024', 'FY 2025'],
+                    datasets: [
+                        {
+                            label: 'Operating Cash Flow',
+                            data: [87902, 93846, 104237],
+                            backgroundColor: '#0078d4',
+                        },
+                        {
+                            label: 'Capital Expenditures',
+                            data: [27148, 32563, 41892],
+                            backgroundColor: '#d13438',
+                        },
+                        {
+                            label: 'Free Cash Flow',
+                            data: [60754, 61283, 62345],
+                            backgroundColor: '#107c41',
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Cash Flow Analysis (in millions USD)',
+                            font: { size: 16 }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Amount (in millions USD)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initial load of charts if charts tab is the default active tab
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('charts').classList.contains('active')) {
+                initializeCharts();
+            }
+        });
+    </script>
+</body>
+</html>
